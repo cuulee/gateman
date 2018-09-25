@@ -36,7 +36,19 @@ class HasRolesAndAbilities {
             return r;
         })
     }
+    from(claimName){
+        claim.where('name',claimName).limit(1).exec((err,c)=>{
+            if(c.length>0){
+                userClaim.deleteOne({user:this._id,claim:c._id},(err)=>{
+                    if(err) throw err;
+                })
+            }else{
+                throw err;
+            }
 
+        })
+        
+    }
 }
 
 module.exports = HasRolesAndAbilities;
