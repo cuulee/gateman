@@ -1,5 +1,6 @@
 const claim = require('./Models/Claim');
 const userClaim = require('./Models/UserClaim');
+const userRole =  require('./Models/UserRole');
 
 class HasRolesAndAbilities {
    to(claimName){
@@ -20,9 +21,16 @@ class HasRolesAndAbilities {
         }
        });
     }
-    from(){
-        
+
+    getClaims(){
+        userClaim.where('user',this._id).exec((err,c)=>{
+            if(err) throw (err);
+            return c;
+            
+        })
     }
+
+
 }
 
 module.exports = HasRolesAndAbilities;
