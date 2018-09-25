@@ -30,6 +30,12 @@ class HasRolesAndAbilities {
         })
     }
 
+    getRoles(){
+        userRole.where('user',this._id).exec((err,r)=>{
+            if(err) throw err;
+            return r;
+        })
+    }
 
 }
 
