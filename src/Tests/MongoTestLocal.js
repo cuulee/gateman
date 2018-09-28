@@ -41,8 +41,8 @@ function newRole(req, res){
 
 app.get('/newClaim', newClaim);
 app.get('/newRole', newRole);
-app.get('/assign/:name', (req, res)=>{
-    User.create({name: req.params.name}, function(err, user){
-        res.json(200, myGateMan.allow(user).to('edit'));
-    });
+app.get('/assign/:name', function (req, res){
+    myGateMan.allow('uuu').then(async (role)=>{
+        res.json(200, await role.to('ski'));
+    });    
 });
